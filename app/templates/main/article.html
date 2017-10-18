@@ -1,0 +1,8 @@
+{%extends "main/base.html"%} {%block title%}{{article.title}}{%endblock%} {%block content%}
+<figure>
+    <h3 class="flex-center">{{article.title}}</h3>
+    <figcaption class="flex-center">{{article.published_at}}</figcaption>
+</figure>
+<hr>
+<div>{{article.content|safe}}</div>
+{%endblock%}

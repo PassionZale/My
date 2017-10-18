@@ -1,0 +1,49 @@
+<!DOCYTPE HTML>
+<html lang="en">
+
+<head>
+    {% block head %}
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta charset="utf-8">
+    <title>{% block title %}{% endblock %} - Pretty Flasky</title>
+    <link rel="stylesheet" href="{{url_for('static', filename='layui/css/layui.css')}}">
+    <style>
+        .footer {
+            padding: 30px 0;
+            line-height: 30px;
+            text-align: center;
+            color: #666;
+            font-weight: 60;
+        }
+
+        .footer a {
+            padding: 0 5px;
+        }
+        .layui-elem-quote {
+            margin-top:5px;
+        }
+    </style>
+    <script src="{{url_for('static', filename='layui/layui.js')}}"></script>
+    {% endblock %}
+</head>
+
+<body>
+    <div class="layui-container" style="margin-top:40px;">
+        <div class="layui-row">
+            <div class="layui-col-md6 layui-col-md-offset3">
+                {% block content %}{% endblock %}
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer">
+        {% block footer %} &copy; Copyright 2017 by <a href="http://www.lovchun.com/" target="_blank">Pretty Flasky</a>.
+        {% endblock %}
+    </footer>
+
+    {% block script %}{% endblock %}
+</body>
+
+</html>

@@ -1,0 +1,82 @@
+<!DOCYTPE HTML>
+<html lang="en">
+
+<head>
+    {% block head %}
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta charset="utf-8">
+    <title>好记性不如烂笔头 - Pretty Flasky</title>
+    <link href="{{url_for('static', filename='css/index.css')}}" rel="stylesheet">
+    <script type="text/javascript" src="{{url_for('static', filename='js/jquery.min.js')}}"></script>
+    <script type="text/javascript" src="{{url_for('static', filename='wangEditor/release/wangEditor.min.js')}}"></script>
+    {% endblock %}
+
+</head>
+
+<body>
+    <div id="article">
+        <div id="title">
+            <input type="text" placeholder="输入标题" id="article-title">
+        </div>
+        <div id="editor-toolbar" class="editor-toolbar"></div>
+        <div id="editor-content" class="editor-content"></div>
+        <div id="btn-groups">
+            <button id="publish-btn" style="margin-left: 20px;" type="button">发布</button>
+            <button id="save-btn" class="default-btn" type="button">保存</button>
+        </div>
+    </div>
+
+    <script type="text/javascript">
+        var E = window.wangEditor;
+        var editor = new E('#editor-toolbar', '#editor-content');
+        // 设置富文本编辑器z-index
+        editor.customConfig.zIndex = 100;
+        // 关闭粘贴样式的过滤
+        editor.customConfig.pasteFilterStyle = false;
+        // 上传图片服务端接口配置
+        editor.customConfig.uploadImgServer = '{{url_for("console.article_upload")}}';
+        // 上传图片 filename
+        editor.customConfig.uploadFileName = 'photos';
+        // 错误提示
+        editor.customConfig.customAlert = function (info) {
+            console.log(info);
+        }
+        // 通过 url 参数配置 debug 模式。url 中带有 editor_debug_mode=1 才会开启 debug 模式
+        editor.customConfig.debug = location.href.indexOf('editor_debug_mode=1') > 0
+        editor.create();
+    </script>
+
+    <script type="text/javascript">
+        $(function () {
+            $('#publish-btn').on('click', function () {
+                create_new_article('publish');
+            });
+            $('#save-btn').on('click', function () {
+                create_new_article('save');
+            });
+
+            function create_new_article(param){
+                var title = $('#article-title').val().trim();
+                if(!title){
+                    return false;
+                }
+                var content = editor.txt.html();
+                $.post('{{url_for("console.article_create")}}', {
+                    title: title,
+                    content: content,
+                    param: param
+                }, function(response){
+                    var res = JSON.parse(response);
+                    if(res.ret_code === 0){
+                        window.location.href = '{{url_for("console.article_list")}}';
+                    }
+                });
+            }
+        });
+    </script>
+
+</body>
+
+</html>

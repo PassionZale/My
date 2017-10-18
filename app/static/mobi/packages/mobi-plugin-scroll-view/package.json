@@ -1,0 +1,25 @@
+{
+  "name": "mobi-plugin-scroll-view",
+  "version": "3.1.0",
+  "description": "The scroll-view plugin for Mobi.css",
+  "main": "src/index.css",
+  "scripts": {
+    "start": "gulp",
+    "build": "gulp build",
+    "version": "npm run build && git add -A ."
+  },
+  "repository": "https://github.com/mobi-css/mobi.css/tree/master/packages/mobi-plugin-scroll-view",
+  "keywords": [
+    "scroll-view",
+    "mobi-plugin",
+    "mobi-css",
+    "css"
+  ],
+  "author": "xcatliu <xcatliu@gmail.com>",
+  "license": "MIT",
+  "homepage": "http://getmobicss.com/docs/scroll-view.html",
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "mobi-util-build-css": "^3.1.0"
+  }
+}

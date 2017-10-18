@@ -1,0 +1,52 @@
+{% extends 'auth/base.html' %} {% block title %}登录{% endblock %} {% block content %}
+<form class="layui-form" method="POST">
+    {{form.hidden_tag()}}
+    <div class="layui-form-item">
+        <label class="layui-form-label">{{form.email.label.text}}</label>
+        <div class="layui-input-block">
+            {{form.email(class='layui-input', placeholder='请输入'+form.email.label.text, autocomplete='off', autofocus=True)}} {% for error
+            in form.errors.email %}
+            <blockquote class="layui-elem-quote">{{error}}</blockquote>
+            {% endfor %}
+        </div>
+    </div>
+
+    <div class="layui-form-item">
+        <label class="layui-form-label">{{form.password.label.text}}</label>
+        <div class="layui-input-block">
+            {{form.password(class='layui-input', placeholder='请输入'+form.password.label.text, autocomplete='off')}} {% for error in form.errors.password
+            %}
+            <blockquote class="layui-elem-quote">{{error}}</blockquote>
+            {% endfor %}
+        </div>
+    </div>
+
+    <div class="layui-form-item">
+        <label class="layui-form-label">{{form.remember_me.label.text}}</label>
+        <div class="layui-input-block">
+            {{form.remember_me(checked=True)}}
+        </div>
+    </div>
+
+    {% with messages = get_flashed_messages() %} {% if messages %} {% for message in messages %}
+    <div class="layui-form-item">
+        <div class="layui-input-block">
+            <blockquote class="layui-elem-quote">{{message}}</blockquote>
+        </div>
+    </div>
+    {% endfor %} {% endif %} {% endwith %}
+    <div class="layui-form-item">
+        <div class="layui-input-block">
+            <button class="layui-btn" lay-submit>立即提交</button>
+            <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+            <a class="layui-btn layui-btn-primary layui-btn-mini" href="{{url_for('auth.register')}}">没有账号?点击注册</a>
+        </div>
+    </div>
+</form>
+{% endblock %} {% block script %}
+<script>
+    layui.use('form', function () {
+        var form = layui.form
+    });
+</script>
+{% endblock %}

@@ -1,0 +1,69 @@
+{% extends "auth/base.html" %} {% block title%}注册{% endblock %}
+{% block content %}
+<form class="layui-form" method="POST">
+    {{form.hidden_tag()}}
+
+    <div class="layui-form-item">
+        <label class="layui-form-label">{{form.username.label.text}}</label>
+        <div class="layui-input-block">
+            {{form.username(class='layui-input', placeholder='请输入'+form.username.label.text, autocomplete='off', autofocus=True)}} {% for error
+            in form.errors.username %}
+            <blockquote class="layui-elem-quote">{{error}}</blockquote>
+            {% endfor %}
+        </div>
+    </div>
+
+    <div class="layui-form-item">
+        <label class="layui-form-label">{{form.email.label.text}}</label>
+        <div class="layui-input-block">
+            {{form.email(class='layui-input', placeholder='请输入'+form.email.label.text, autocomplete='off', autofocus=True)}} {% for error
+            in form.errors.email %}
+            <blockquote class="layui-elem-quote">{{error}}</blockquote>
+            {% endfor %}
+        </div>
+    </div>
+
+    <div class="layui-form-item">
+        <label class="layui-form-label">{{form.password.label.text}}</label>
+        <div class="layui-input-block">
+            {{form.password(class='layui-input', placeholder='请输入'+form.password.label.text, autocomplete='off', autofocus=True)}} {% for error
+            in form.errors.password %}
+            <blockquote class="layui-elem-quote">{{error}}</blockquote>
+            {% endfor %}
+        </div>
+    </div>
+
+    <div class="layui-form-item">
+        <label class="layui-form-label">{{form.confirm_pwd.label.text}}</label>
+        <div class="layui-input-block">
+            {{form.confirm_pwd(class='layui-input', placeholder='请输入'+form.confirm_pwd.label.text, autocomplete='off', autofocus=True)}} {% for error
+            in form.errors.confirm_pwd %}
+            <blockquote class="layui-elem-quote">{{error}}</blockquote>
+            {% endfor %}
+        </div>
+    </div>
+
+    {% with messages = get_flashed_messages() %} {% if messages %} {% for message in messages %}
+    <div class="layui-form-item">
+        <div class="layui-input-block">
+            <blockquote class="layui-elem-quote">{{message}}</blockquote>
+        </div>
+    </div>
+    {% endfor %} {% endif %} {% endwith %}
+    <div class="layui-form-item">
+        <div class="layui-input-block">
+            <button class="layui-btn" lay-submit>立即提交</button>
+            <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+            <a class="layui-btn layui-btn-primary layui-btn-mini" href="{{url_for('auth.login')}}">已有账号?点击登陆</a>
+        </div>
+    </div>
+
+</form>
+{% endblock %}
+{% block script %}
+<script>
+    layui.use('form', function(){
+        var form = layui.form
+    });
+</script>
+{% endblock %}

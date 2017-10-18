@@ -1,0 +1,28 @@
+{% extends "console/base.html" %} {% block content %}
+
+<form class="layui-form" method="POST" action="{{url_for('console.my')}}">
+    <div class="layui-form-item">
+        <label class="layui-form-label">更换头像</label>
+        <div class="layui-input-block">
+            {% if current_user.avatar %}
+            <img src="{{current_user.avatar}}" style="width:100px;height:auto;cursor:pointer;"/> {% else %}
+            <img src="{{url_for('static', filename='images/avatar.png')}}" style="width:100px;height:auto;cursor:pointer;"/> {% endif %}
+            <input type="hidden" name="new_avatar" value="{{current_user.avatar}}">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">更改密码</label>
+        <div class="layui-input-block">
+            <input type="password" name="new_password" placeholder="请输入新密码" autocomplete="off" class="layui-input">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <div class="layui-input-block">
+            <button class="layui-btn">立即提交</button>
+            <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+        </div>
+    </div>
+</form>
+
+
+{% endblock %}

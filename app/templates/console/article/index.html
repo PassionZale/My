@@ -1,0 +1,68 @@
+{% extends "console/base.html" %} {% block content %}
+<fieldset class="layui-elem-field">
+    <legend>文章列表</legend>
+    <div class="layui-field-box">
+        <a class="layui-btn" href="{{url_for('console.article_create')}}">创建文章</a>
+    </div>
+</fieldset>
+<table class="layui-table" id="table-list" lay-filter="article-list"></table>
+
+<script type="text/html" id="toolbar">
+    <a class="layui-btn layui-btn-mini" lay-event="edit">查看</a>
+    <a class="layui-btn layui-btn-danger layui-btn-mini" lay-event="del">删除</a>
+</script>
+
+{% endblock %} {% block script %}
+<script>
+    layui.use('table', function () {
+
+        var table = layui.table;
+        var $ = layui.$;
+
+        table.render({
+            elem: '#table-list',
+            url: '{{url_for("console.article_list")}}',
+            width: '100%',
+            height: 'full-320',
+            page: true,
+            limits: [10, 20, 30],
+            limit: 10,
+            cols: [[
+                { field: 'id', width: 80, sort: true, title: '#' },
+                { field: 'title', width: 200, edit: true, title: '标题' },
+                { field: 'views', width: 80, sort: true, title: '查阅' },
+                { field: 'created_at', width: 200, sort: true, title: '创建日期' },
+                { field: 'published_at', width: 200, sort: true, title: '发布日期' },
+                { fixed: 'right', width: 150, align: 'center', toolbar: '#toolbar', title: '操作' }
+            ]]
+        });
+
+        table.on('tool(article-list)', function (obj) {
+            var data = obj.data;
+            var layEvent = obj.event;
+            var tr = obj.tr;
+
+            if (layEvent === 'del') {
+                layer.confirm('确定删除操作?', function (index) {
+                    layer.close(index);
+                    $.post('{{url_for("console.article_delete")}}', { id: data.id }, function (response) {
+                        if (response.ret_code === 0) {
+                            obj.del();
+                        } else {
+                            layer.confirm('删除失败!', function (index) {
+                                layer.close(index);
+                            });
+                        }
+                    });
+                })
+            } else if (layEvent === 'edit') {
+                window.location.href = data.link;
+            } else {
+                return false;
+            }
+        });
+
+    });
+
+</script>
+{% endblock %}

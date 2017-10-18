@@ -1,0 +1,28 @@
+{
+    "name": "mobi-plugin-form",
+    "version": "3.1.0",
+    "description": "The form plugin for Mobi.css",
+    "main": "src/index.css",
+    "scripts": {
+        "start": "gulp",
+        "build": "gulp build",
+        "version": "npm run build && git add -A ."
+    },
+    "repository": "https://github.com/mobi-css/mobi.css/tree/master/packages/mobi-plugin-form",
+    "keywords": [
+        "form",
+        "mobi-plugin",
+        "mobi-css",
+        "css"
+    ],
+    "author": "xcatliu <xcatliu@gmail.com>",
+    "license": "MIT",
+    "homepage": "http://getmobicss.com/docs/form.html",
+    "dependencies": {
+        "mobi-theme-base": "^3.0.2"
+    },
+    "devDependencies": {
+        "gulp": "^3.9.1",
+        "mobi-util-build-css": "^3.1.0"
+    }
+}

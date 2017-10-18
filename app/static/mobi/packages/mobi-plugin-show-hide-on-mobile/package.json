@@ -1,0 +1,28 @@
+{
+    "name": "mobi-plugin-show-hide-on-mobile",
+    "version": "3.1.0",
+    "description": "The show-hide-on-mobile plugin for Mobi.css",
+    "main": "src/index.css",
+    "scripts": {
+        "start": "gulp",
+        "build": "gulp build",
+        "version": "npm run build && git add -A ."
+    },
+    "repository": "https://github.com/mobi-css/mobi.css/tree/master/packages/mobi-plugin-show-hide-on-mobile",
+    "keywords": [
+        "show-hide-on-mobile",
+        "mobi-plugin",
+        "mobi-css",
+        "css"
+    ],
+    "author": "xcatliu <xcatliu@gmail.com>",
+    "license": "MIT",
+    "homepage": "http://getmobicss.com/docs/show-hide-on-mobile.html",
+    "dependencies": {
+        "mobi-theme-base": "^3.0.2"
+    },
+    "devDependencies": {
+        "gulp": "^3.9.1",
+        "mobi-util-build-css": "^3.1.0"
+    }
+}
