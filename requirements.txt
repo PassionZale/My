@@ -1,0 +1,17 @@
+apt-xapian-index==0.45
+argparse==1.2.1
+chardet==2.0.1
+colorama==0.2.5
+gyp==0.1
+html5lib==0.999
+lockfile==0.8
+meld3==0.6.10
+python-apt==0.9.3.5ubuntu1
+python-debian==0.1.21-nmu2ubuntu2
+requests==2.2.1
+six==1.5.2
+ssh-import-id==3.21
+supervisor==3.0b2
+urllib3==1.7.1
+wheel==0.24.0
+wsgiref==0.1.2
