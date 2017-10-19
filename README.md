@@ -9,10 +9,13 @@
 3. cd My/
 4. virtualenv -p /usr/bin/python3 env
 5. source ./env/bin/activate
-6. pip install -r requirement.txt
+6. pip install -r requirements.txt
 7. git update-index --assume-unchanged config.py
 8. 打开config.py修改Mysql数据库连接配置 
 
 # 数据库迁移
 1. ./manage.py db upgrade
 2. 此时数据库中表已创建完毕
+
+# TODO
+1. 如何部署至云主机上
