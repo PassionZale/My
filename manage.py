@@ -19,7 +19,7 @@ manager.add_command("shell", Shell(make_context=make_shell_context))
 manager.add_command('db', MigrateCommand)
 manager.add_command('showurls', commands.ShowUrls)
 
-
+'''
 @app.context_processor
 def override_processor():
     return dict(url_for=dated_url_for)
@@ -32,7 +32,7 @@ def dated_url_for(endpoint, **values):
             file_path = os.path.join(app.root_path, endpoint, filename)
             values['v'] = int(os.stat(file_path).st_mtime)
     return url_for(endpoint, **values)
-
+'''
 
 if __name__ == '__main__':
     manager.run()
