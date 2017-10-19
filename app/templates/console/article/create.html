@@ -70,7 +70,7 @@
                 }, function(response){
                     var res = JSON.parse(response);
                     if(res.ret_code === 0){
-                        window.location.href = '{{url_for("console.article")}}';
+                        window.location.href = '{{url_for("console.article_index")}}';
                     }
                 });
             }
