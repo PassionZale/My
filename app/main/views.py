@@ -8,8 +8,12 @@ from ..models import FlaskyArticles
 def index():
     page = request.args.get('page', type=int, default=1)
     limit = request.args.get('limit', type=int, default=5)
-    pagination = FlaskyArticles.query.order_by(
-        FlaskyArticles.published_at.desc()).filter_by(drafted=False, published_at!=None).paginate(
+    filters = {
+        FlaskyArticles.drafted == False,
+        FlaskyArticles.published_at != None
+    }
+    pagination = FlaskyArticles.query.filter(*filters).order_by(
+        FlaskyArticles.published_at.desc()).paginate(
             page, limit, False)
     articles = pagination.items
     return render_template('main/index.html', articles=articles, pagination=pagination)
