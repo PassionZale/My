@@ -82,7 +82,7 @@ def article_create():
                 content=request.form.get('content'))
         db.session.add(article)
         db.session.commit()
-        flash('文章创建成功')
+        #flash('文章创建成功')
         return json.dumps({'ret_code': 0, 'ret_msg': 'success'})
 
 
@@ -110,7 +110,7 @@ def article_update():
         article.published_at = datetime.utcnow()
     db.session.add(article)
     db.session.commit()
-    flash('文章修改成功')
+    #flash('文章修改成功')
     return json.dumps({'ret_code': 0, 'ret_msg': 'success'})
 
 
