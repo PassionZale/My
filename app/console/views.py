@@ -130,9 +130,9 @@ def article_delete():
 
 
 # 素材首页
-@console.route('/material')
+@console.route('/album', methods=['GET'])
 @login_required
-def material_index():
+def album_index():
     return render_template('console/material/index.html')
 
 
